@@ -1,0 +1,20 @@
+name: Primeiro Workflow Linuxtips
+
+# Definimos qual vai ser o trigger, o que vai acionar essa actions, nesse caso fazer push na branch main.
+on:
+  push:
+    branches:
+      - main
+
+# Aqui temos quais vão ser as ações que ele vai tomar, nesse caso definimos um job chamado giropops.
+jobs:
+  giropops:
+    # Definimos qual vai ser o SO que vai rodar.
+    runs-on: ubuntu-latest
+    # Steps são passos que o job vai executar em sequência.
+    steps:
+      - name: Confere versao do Ubuntu
+        run: cat/etc/os-release
+
+      - name: Exibir uma mensagem
+        run: echo "Estou fazendo o curso de Github Actions da Linuxtips"
