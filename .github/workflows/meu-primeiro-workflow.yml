@@ -14,7 +14,7 @@ jobs:
     # Steps são passos que o job vai executar em sequência.
     steps:
       - name: Confere versao do Ubuntu
-        run: cat/etc/os-release
+        run: cat /etc/os-release
 
       - name: Exibir uma mensagem
         run: echo "Estou fazendo o curso de Github Actions da Linuxtips"
