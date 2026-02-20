@@ -11,14 +11,33 @@ jobs:
     steps:
       - name: Confere versao do Ubuntu
         run: cat /etc/os-release
+
       - name: Escreve arquivo mensagem.txt
         run: echo "Estou fazendo o curso de Github Actions da Linuxtips" > mensagem.txt
-      - name: Qualquer coisa
-        run: ls -lha
-      - name: Le conteudo do arquivo
-        run: cat mensagem.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: strigus
+          path: /home/ubuntu/mensagem.txt
   job-2:
     runs-on: ubuntu-latest
     steps: 
-      - name: Visualizando arquivos
+      - name: Ver conteúdo do diretório
         run: ls -lha
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: strigus
+          path: mensagem.txt
+      
+      - name: Ver conteúdo do diretório strigus
+        run: ls -lha && ls ./strigus/
+
+      - name: Move artefato e apaga resido
+        run: mv strigus/mensagem.txt . && rm -rf ./strigus
+      
+      - name: Ver conteúdo do diretório
+        run: ls -lha
+
+      - name: Acessar conteúdo do arquivo
+        run: cat mensagem.txt
