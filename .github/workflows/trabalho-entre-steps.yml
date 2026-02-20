@@ -6,13 +6,12 @@ on:
       - main
 
 jobs:
-  giropops:
+  entre-steps:
     runs-on: ubuntu-latest
     steps:
       - name: Confere versao do Ubuntu
         run: cat /etc/os-release
-
-      - name: Exibir uma mensagem
+      - name: Escreve arquivo mensagem.txt
         run: echo "Estou fazendo o curso de Github Actions da Linuxtips" > mensagem.txt
       - name: Qualquer coisa
         run: ls -lha
