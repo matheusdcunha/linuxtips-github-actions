@@ -12,6 +12,9 @@ jobs:
   scout-image:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
       - name: Docker Setup Docker
         uses: docker/setup-docker-action@v4.7.0
 
@@ -32,3 +35,4 @@ jobs:
         with:
           command: quickview, cves
           image: ${{ inputs.docker_image }}
+          only-severities: critical, high
