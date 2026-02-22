@@ -1,0 +1,16 @@
+name: Desafio 01 - Input Docker Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      docker_image:
+        description: "Docker Image"
+        required: true
+        type: string
+
+jobs:
+  scout-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Setup Docker
+        uses: docker/setup-docker-action@v4.7.0
