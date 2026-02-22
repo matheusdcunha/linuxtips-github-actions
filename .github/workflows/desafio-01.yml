@@ -20,3 +20,9 @@ jobs:
       
       - name: Show All Images
         run: docker image ls -a
+
+      - name: Docker Scout
+        uses: docker/scout-action@v1.18.2
+        with:
+          command: quickview
+          image: ${{ inputs.docker_image }}
