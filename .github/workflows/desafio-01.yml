@@ -12,5 +12,27 @@ jobs:
   scout-image:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
       - name: Docker Setup Docker
         uses: docker/setup-docker-action@v4.7.0
+
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Pull Docker Image
+        run: docker image pull ${{ inputs.docker_image }}
+      
+      - name: Show All Images
+        run: docker image ls -a
+
+      - name: Docker Scout
+        uses: docker/scout-action@v1.18.2
+        with:
+          command: quickview, cves
+          image: ${{ inputs.docker_image }}
+          only-severities: critical, high
